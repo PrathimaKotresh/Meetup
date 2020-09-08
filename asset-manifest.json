@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Meetup/static/css/main.5f361e03.chunk.css",
+    "main.js": "/Meetup/static/js/main.f85dbf82.chunk.js",
+    "main.js.map": "/Meetup/static/js/main.f85dbf82.chunk.js.map",
+    "runtime-main.js": "/Meetup/static/js/runtime-main.2ef098fd.js",
+    "runtime-main.js.map": "/Meetup/static/js/runtime-main.2ef098fd.js.map",
+    "static/js/2.e3215a69.chunk.js": "/Meetup/static/js/2.e3215a69.chunk.js",
+    "static/js/2.e3215a69.chunk.js.map": "/Meetup/static/js/2.e3215a69.chunk.js.map",
+    "index.html": "/Meetup/index.html",
+    "precache-manifest.e0ff26c7731fc4a5a299684f54eb4a46.js": "/Meetup/precache-manifest.e0ff26c7731fc4a5a299684f54eb4a46.js",
+    "service-worker.js": "/Meetup/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/Meetup/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.e3215a69.chunk.js.LICENSE.txt": "/Meetup/static/js/2.e3215a69.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/Meetup/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2ef098fd.js",
+    "static/js/2.e3215a69.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.f85dbf82.chunk.js"
+  ]
+}
