@@ -9,7 +9,10 @@ class NumberOfEvents extends Component {
   handleOnChange = (event) => {
     const value = event.target.value;
     if (value < 1) {
-      this.setState({ errorMessage: "Please enter vaid number" })
+      this.setState({
+        errorMessage: "Please enter vaid number",
+        numberOfEvents: 0
+      })
     }
     else {
       this.setState({
@@ -24,7 +27,7 @@ class NumberOfEvents extends Component {
     return (
       <div className="numberOfEvents">
         <label className="numberOfEvents-label">Show number of Events</label>
-        <input value={this.state.numberOfEvents} className="numberOfEvents-number" onChange={this.handleOnChange}></input>
+        <input value={this.state.numberOfEvents} className="numberOfEvents-number" onChange={this.handleOnChange} />
         {this.state.errorMessage && <p className="errorMessage">{this.state.errorMessage}</p>}
       </div>
     );
