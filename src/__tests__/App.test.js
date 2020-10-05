@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../App';
 import { mount } from "enzyme";
+import Event from '../Event';
 import EventList from '../EventList';
 import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
@@ -65,6 +66,12 @@ describe('<App /> integration', () => {
     });
     expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
     expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(null, null, 5);
+    AppWrapper.setState({
+      events: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]
+    });
+    const EventListWrapper = AppWrapper.find(EventList);
+    expect(EventListWrapper).toHaveLength(1);
+    expect(EventListWrapper.find('.EventList').find('.event')).toHaveLength(5);
     AppWrapper.unmount();
   });
 });
