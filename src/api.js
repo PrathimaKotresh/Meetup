@@ -85,7 +85,7 @@ async function getSuggestions(query) {
   return [];
 }
 
-async function getEvents(lat, lon) {
+async function getEvents(lat, lon, numberOfEvents) {
   if (window.location.href.startsWith('http://localhost')) {
     return mockEvents.events;
   }
@@ -97,6 +97,9 @@ async function getEvents(lat, lon) {
     // lat, lon is optional; if you have a lat and lon, you can add them
     if (lat && lon) {
       url += '&lat=' + lat + '&lon=' + lon;
+    }
+    if (numberOfEvents) {
+      url += '&page=' + numberOfEvents
     }
     const result = await axios.get(url);
     return result.data.events;
