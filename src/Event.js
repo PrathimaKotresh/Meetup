@@ -23,9 +23,11 @@ class Event extends Component {
         <h3 className="event-name">
           {this.props.event.name}
         </h3>
-        <p className="event-groupName">
-          {this.props.event.group.name}
-        </p>
+        {this.props.event.group && this.props.event.group.name && (
+          <p className="event-groupName">
+            {this.props.event.group.name}
+          </p>
+        )}
         <p className="event-expectedParticipants">
           {this.props.event.yes_rsvp_count} 'people are going'
         </p>
