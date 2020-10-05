@@ -26,22 +26,21 @@ describe('<App /> component', () => {
 });
 
 describe('<App /> integration', () => {
-  test('get list of events after user selects a city',
-    async () => {
-      const AppWrapper = mount(<App />);
-      AppWrapper.instance().updateEvents = jest.fn();
-      AppWrapper.instance().forceUpdate();
-      const CitySearchWrapper =
-        AppWrapper.find(CitySearch);
-      CitySearchWrapper.instance().handleItemClicked('value', 1.1, 1.2);
-      expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
-      expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(1.1, 1.2);
-      AppWrapper.unmount();
-    });
+  test('get list of events after user selects a city', async () => {
+    const AppWrapper = mount(<App />);
+    AppWrapper.instance().updateEvents = jest.fn();
+    AppWrapper.instance().forceUpdate();
+    const CitySearchWrapper =
+      AppWrapper.find(CitySearch);
+    CitySearchWrapper.instance().handleItemClicked('value', 1.1, 1.2);
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(1.1, 1.2);
+    AppWrapper.unmount();
+  });
 
   test('change state after get list of events', async () => {
     const AppWrapper = shallow(<App />);
-    AppWrapper.instance().updateEvents(1.1, 1.2);
+    AppWrapper.instance().updateEvents(1.1, 1.2, null);
     await AppWrapper.update();
     expect(AppWrapper.state('events')).toEqual(mockEvents.events);
   });
@@ -49,9 +48,23 @@ describe('<App /> integration', () => {
   test('render correct list of events', () => {
     const AppWrapper = mount(<App />);
     AppWrapper.setState({
-      events: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
+      events: [{ id: 1 }, { id: 2 }, { id: 3 }]
     });
-    expect(AppWrapper.find('.event')).toHaveLength(4);
+    expect(AppWrapper.find('.event')).toHaveLength(3);
+    AppWrapper.unmount();
+  });
+
+  test('number of events change', async () => {
+    const AppWrapper = mount(<App />);
+    AppWrapper.instance().updateEvents = jest.fn();
+    AppWrapper.instance().forceUpdate();
+    const NumberOfEventsWrapper =
+      AppWrapper.find(NumberOfEvents);
+    NumberOfEventsWrapper.find(".numberOfEvents-number").simulate("change", {
+      target: { value: 5 },
+    });
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(null, null, 5);
     AppWrapper.unmount();
   });
 });
