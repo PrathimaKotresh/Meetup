@@ -11,7 +11,7 @@ class NumberOfEvents extends Component {
     if (value < 1) {
       this.setState({
         errorMessage: "Please enter vaid number",
-        numberOfEvents: 0
+        numberOfEvents: null
       })
     }
     else {
