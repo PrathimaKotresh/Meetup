@@ -6,15 +6,16 @@ import NumberOfEvents from './NumberOfEvents';
 import { getEvents } from './api';
 
 class App extends Component {
-  state = { events: [] };
+  state = { events: [], numberOfEvents: null };
 
   componentDidMount() {
-    getEvents(null, null, 32).then(
+    getEvents(null, null, this.state.numberOfEvents).then(
       events => this.setState({ events })
     );
   }
 
   updateEvents = (lat, lon, numberOfEvents) => {
+    this.setState({ numberOfEvents })
     getEvents(lat, lon, numberOfEvents).then(events => this.setState({ events }));
   }
 
