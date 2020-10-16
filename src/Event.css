@@ -1,0 +1,28 @@
+.event {
+  display: flex;
+  border-style: groove;
+  border-radius: 10px;
+  margin-bottom: 10px
+}
+
+.event > div {
+  padding: 10px;
+}
+
+.event-name {
+  margin: 0;
+}
+
+.event-overview {
+  flex-basis: 80%;
+  text-align: left;
+}
+
+.event-description-headline {
+  margin: 20px 0 10px 0;
+}
+
+.event-detailsButton-wrapper {
+  flex-basis: 20%;
+  align-self: flex-end;
+}

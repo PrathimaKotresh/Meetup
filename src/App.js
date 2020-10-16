@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents } from './api';
+import { InfoAlert } from './Alert';
 
 class App extends Component {
   state = { events: [], numberOfEvents: null };
@@ -22,6 +23,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {!navigator.onLine && (
+          <InfoAlert text="You are offline! Events list shown is loaded from cache. For up to date list connect to internet." />
+        )}
         <CitySearch updateEvents={this.updateEvents} />
         <NumberOfEvents updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
