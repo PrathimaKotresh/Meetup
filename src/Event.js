@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { PieChart, Pie, ResponsiveContainer, Cell, Tooltip, Legend } from 'recharts';
 import './Event.css';
 
 
@@ -16,6 +17,14 @@ class Event extends Component {
   };
 
   render() {
+    const showDetails = this.state.showDetails;
+    const event = this.props.event;
+    const date = new Date(new Date(event.local_date).toDateString());
+
+    const rsvpLimit = event.rsvp_limit;
+    const freeSlots = rsvpLimit - event.yes_rsvp_count;
+    const rsvpData = [{ name: 'people coming', value: event.yes_rsvp_count }, { name: 'free slots', value: freeSlots }];
+    const colors = ['#ED1C40', '#0555BB'];
     return (
       <div className="event">
         <div className="event-overview">
@@ -32,11 +41,6 @@ class Event extends Component {
               Group: {this.props.event.group.name}
             </p>
           )}
-          {this.props.event.yes_rsvp_count && (
-            <p className="event-expectedParticipants">
-              {this.props.event.yes_rsvp_count} people are going
-            </p>
-          )}
           {this.state.showDetails && (
             <div className="eventDetails">
               {this.props.event.venue && this.props.event.venue.name && (
@@ -49,6 +53,28 @@ class Event extends Component {
                   Event type: {this.props.event.visibility}
                 </p>
               )}
+              <div className="rsvp-chart">
+                {rsvpLimit > 0 &&
+                  <ResponsiveContainer height={250} width={300}>
+                    <PieChart width={400} height={250}>
+                      <Pie dataKey="value" startAngle={360} endAngle={0} data={rsvpData} cx={150} cy={100} fill="#8884d8" label>
+                        {
+                          rsvpData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={colors[index]} />
+                          ))
+                        }
+                      </Pie>
+                      <Tooltip />
+                      <Legend verticalAlign="bottom" align="center" />
+                    </PieChart>
+                  </ResponsiveContainer>
+                }
+              </div>
+              <div className="no-rsvp">
+                {!rsvpLimit &&
+                  <p className="no-rsvp-container">{event.yes_rsvp_count} people have RSVPd</p>
+                }
+              </div>
               {this.props.event.description && (
                 <div>
                   <h4 className="event-description-headline">Event Description:</h4>
