@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../App';
 import { mount } from "enzyme";
-import Event from '../Event';
 import EventList from '../EventList';
 import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
